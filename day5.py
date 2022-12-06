@@ -34,23 +34,18 @@ stacks: dict[int,list[str]] = {}
 
 for line in stackLines:
     currCol = 1
-    charNum = 0
-    for char in line:
-        
-        charNum += 1
+    for charNum, char in enumerate(line, start=1):
+
         print(charNum, currCol, char)
-        if char == "[" or char == "]" or char == " ":
+        if char in ["[", "]", " "]:
             pass
         elif char in string.ascii_letters:
             currStack = stacks.get(currCol)
-            if currStack is None:
-                stacks[currCol] = [char]
-            else:
-                stacks[currCol] = currStack + [char]
+            stacks[currCol] = [char] if currStack is None else currStack + [char]
         if charNum % 4 == 2:
             currCol += 1
-        # else:
-            # print(char,charNum % 4)
+            # else:
+                # print(char,charNum % 4)
 
 print(stacks)
 
@@ -67,7 +62,6 @@ for move in eachMove:
 
     stacks[new] = grabbed + stacks[new] 
     print(stacks)
-goodKeys = list(stacks.keys())
-goodKeys.sort()
+goodKeys = sorted(stacks.keys())
 for val in goodKeys:
     print(stacks[val][0], end="")
