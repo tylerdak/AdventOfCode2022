@@ -58,7 +58,8 @@ for move in eachMove:
     updated = origStack[amt:]
     stacks[orig] = updated
 
-    # grabbed.reverse()
+    # only necessary for part 1, comment for part 2
+    # grabbed.reverse() 
 
     stacks[new] = grabbed + stacks[new] 
     print(stacks)
